@@ -1,0 +1,36 @@
+{
+  "name": "SQSEngagementsTracker",
+  "version": "1.0.0",
+  "description": "A service that keeps track of the average of engagements",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ismaeils/engagementsLogger.git"
+  },
+  "author": "Ismail Ghoneim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ismaeils/engagementsLogger/issues"
+  },
+  "homepage": "https://github.com/Ismaeils/engagementsLogger#readme",
+  "dependencies": {
+    "@aws-cdk/aws-sqs": "^1.91.0",
+    "aws-sdk": "^2.849.0",
+    "axios": "^0.21.1",
+    "cli-progress": "^3.9.0",
+    "dateformat": "^4.5.1",
+    "express": "^4.17.1",
+    "split-array": "^1.0.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.8",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "jest": "^26.6.3"
+  }
+}
