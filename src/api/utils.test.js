@@ -8,8 +8,9 @@ const conversationSample = {"id":"6036dc062637bab6bfe190c0",
     "username":"faker fake",
     "engagements":{"likes":103,"love":3,"haha":115,"angry":70}
 };
-
-it('should return a modified conversation', ()=>{
-    let modifiedConversation = modifyConversation(conversationSample);
-    expect(modifiedConversation.total_engagements).toBe(291);
+describe('Utils', ()=>{
+    it('should return a modified conversation', ()=>{
+        let modifiedConversation = modifyConversation(conversationSample);
+        expect(modifiedConversation.total_engagements).toBe(291);
+    });
 });

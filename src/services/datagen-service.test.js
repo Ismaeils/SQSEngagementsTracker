@@ -16,7 +16,10 @@ jest.mock('axios', ()=>({
 }));
 
 
-it('should return a list of json objects(conversations)', async ()=>{
-    let listOfConvos = await DatagenService.fetchGeneratedConversations("url");
-    expect(listOfConvos).toStrictEqual([conversationSample, conversationSample, conversationSample, conversationSample]);
+describe('DatagenService', ()=>{
+    it('should return a list of generated json objects(conversations)', async ()=>{
+        let listOfConvos = await DatagenService.fetchGeneratedConversations("url");
+        expect(listOfConvos).toStrictEqual([conversationSample, conversationSample, conversationSample, conversationSample]);
+    });
 });
+

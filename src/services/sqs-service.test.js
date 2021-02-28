@@ -30,27 +30,28 @@ jest.mock('aws-sdk', ()=>{
       };
 });
 
-
-it('should return the (number) of remaining conversations', async ()=>{
-    (sqs.getQueueAttributes().promise).mockResolvedValueOnce({Attributes:{ApproximateNumberOfMessages: 100}});
-    let result = await SqsService.getRemainingConversations("params");
-    expect(result).toBe(100);
-});
-
-it('should return receipt (json object) of pushed conversation', async ()=>{
-    (sqs.sendMessage().promise).mockResolvedValueOnce(conversationSample);
-    let result = await SqsService.pushConversation("params");
-    expect(result).toStrictEqual(conversationSample);
-});
-
-it('should return receipts (list of json objects) of pushed conversations', async ()=>{
-    (sqs.sendMessageBatch().promise).mockResolvedValueOnce([conversationSample, conversationSample]);
-    let result = await SqsService.pushConversations("params");
-    expect(result).toStrictEqual([conversationSample, conversationSample]);
-});
-
-it('should return conversation (list of one json object)', async ()=>{
-    (sqs.receiveMessage().promise).mockResolvedValueOnce({Messages: [{Body: conversationSample}]});
-    let result = await SqsService.consumeConversation("params");
-    expect(result).toStrictEqual(conversationSample);
+describe('SqsService', ()=>{
+    it('should return the (number) of remaining conversations', async ()=>{
+        (sqs.getQueueAttributes().promise).mockResolvedValueOnce({Attributes:{ApproximateNumberOfMessages: 100}});
+        let result = await SqsService.getRemainingConversations("params");
+        expect(result).toBe(100);
+    });
+    
+    it('should return receipt (json object) of pushed conversation', async ()=>{
+        (sqs.sendMessage().promise).mockResolvedValueOnce(conversationSample);
+        let result = await SqsService.pushConversation("params");
+        expect(result).toStrictEqual(conversationSample);
+    });
+    
+    it('should return receipts (list of json objects) of pushed conversations', async ()=>{
+        (sqs.sendMessageBatch().promise).mockResolvedValueOnce([conversationSample, conversationSample]);
+        let result = await SqsService.pushConversations("params");
+        expect(result).toStrictEqual([conversationSample, conversationSample]);
+    });
+    
+    it('should return conversation (list of one json object)', async ()=>{
+        (sqs.receiveMessage().promise).mockResolvedValueOnce({Messages: [{Body: conversationSample}]});
+        let result = await SqsService.consumeConversation("params");
+        expect(result).toStrictEqual(conversationSample);
+    });
 });
